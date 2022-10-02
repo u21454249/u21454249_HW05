@@ -1,0 +1,61 @@
+﻿@model u21454249_HW05.Models.DetailsVM
+
+@{
+    ViewBag.Title = "BookDetails";
+}
+
+<h2>
+    @Model.Book.Name -
+    @if (Model.Book.Status == "Book Out")
+    {
+        <span style="color:red">Book Out</span>
+    }
+    else
+    {
+        <span style="color:green">Available</span>
+    }
+</h2>
+
+<div class="d-flex">
+    <div class="d-inline-block">
+        <h3># Borrows - @Model.Borrowed.Count()</h3>
+    </div>
+    <div class="d-inline-block">
+        @Html.ActionLink("View Student", "Students", new { bookId = Model.Book.BookID }, new { @class = "btn btn-info" })
+    </div>
+</div>
+
+
+<table class="table">
+    <tr>
+        <th scope="col">#</th>
+        <th scope="col">BorrowID</th>
+        <th scope="col"> BookID</th>
+        <th scope="col">BroughtDate</th>
+        <th scope="col"> Borrowed By</th>
+    </tr>
+    
+
+    @foreach (var item in Model.Borrowed)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.BorrowID)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.BookID)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Taken)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Brought)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Studentname)
+            </td>
+
+        </tr>
+    }
+
+</table>
